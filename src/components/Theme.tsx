@@ -1,22 +1,23 @@
-import React, {memo} from "react";
-import {useAction, useAtom} from "@reatom/react";
-import {changeClient, clientAtom} from "../models/clent-context";
+import {$theme, changeTheme} from "../models/theme";
+import {useEvent, useStore} from "effector-react";
+import {memo} from "react";
 
-export const ClientContext = memo(() => {
+export const Theme = memo(() => {
 
-    const client = useAtom(clientAtom);
-    const changeClientAction = useAction(changeClient);
+    const theme = useStore($theme);
+    const changeThemeEvent = useEvent(changeTheme);
 
-    const handleChangeClient = () => {
-        changeClientAction('new client');
+    const handleChangeTheme = () => {
+        changeThemeEvent();
     }
 
     return (
-        <div>
-            <div>
-                {client}
-            </div>
-            <button onClick={handleChangeClient}>update client</button>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <h3>Effector store</h3>
+            <div>{theme}</div>
+            <br/>
+            <button onClick={handleChangeTheme}>update theme</button>
         </div>
     )
+
 })

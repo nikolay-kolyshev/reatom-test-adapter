@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {context} from "@reatom/react-v1";
+import {createStore} from "@reatom/core-v1";
+import {ClientContext} from "./components/ClientContext";
+import {Theme} from "./components/Theme";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const store = createStore();
+
+const App = () => {
+
+    return (
+        <div className="App">
+            <context.Provider value={store}>
+                <Theme/>
+                <br/>
+                <hr/>
+                <ClientContext />
+            </context.Provider>
+        </div>
+    )
 }
 
 export default App;

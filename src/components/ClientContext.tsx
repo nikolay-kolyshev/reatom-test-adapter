@@ -1,22 +1,31 @@
 import React, {memo} from "react";
-import {useAction, useAtom} from "@reatom/react";
-import {changeClient, clientAtom} from "../models/clent-context";
+import {useAction, useAtom} from "@reatom/react-v1";
+import {changeClient, changeLocation, clientContextAtom, locationCalcAtom} from "../models/clent-context";
 
-const ClientContextComponent = memo(() => {
+export const ClientContext = memo(() => {
 
-    const client = useAtom(clientAtom);
+    const clientContext = useAtom(clientContextAtom);
+    const locationCalc = useAtom(locationCalcAtom);
     const changeClientAction = useAction(changeClient);
+    const changeLocationAction = useAction(changeLocation);
 
     const handleChangeClient = () => {
         changeClientAction('new client');
     }
 
+    const handleChangeLocation = () => {
+        changeLocationAction('new location');
+    }
+
     return (
-        <div>
-            <div>
-                {client}
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <h3>Reatom store</h3>
+            <div>{clientContext.client}</div>
+            <div>{clientContext.location}</div>
+            <div>{locationCalc}</div>
+            <br/>
+            <button onClick={handleChangeClient}>update client</button>
+            <button onClick={handleChangeLocation}>update location</button>
         </div>
-        <button onClick={handleChangeClient}>update client</button>
-    </div>
-)
+    )
 })
