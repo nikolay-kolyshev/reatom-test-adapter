@@ -9,7 +9,7 @@ const store = createStore();
 const App = () => {
 
     return (
-        <div className="App">
+        <div className="App" style={{background: 'green'}}>
             <context.Provider value={store}>
                 <Theme/>
                 <br/>
