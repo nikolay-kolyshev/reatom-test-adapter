@@ -1,3 +1,5 @@
+import 'core-js/proposals/relative-indexing-method';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
